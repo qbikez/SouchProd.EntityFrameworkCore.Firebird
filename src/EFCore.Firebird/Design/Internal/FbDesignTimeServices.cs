@@ -23,4 +23,16 @@ namespace Microsoft.EntityFrameworkCore.Design.Internal
                 .AddSingleton<IRelationalTypeMapper, FbTypeMapper>();
         }
     }
+
+    public class FirebirdDesignTimeServices : IDesignTimeServices
+    {
+        public void ConfigureDesignTimeServices(IServiceCollection serviceCollection)
+        {           
+            serviceCollection
+                .AddSingleton<IScaffoldingProviderCodeGenerator, FbScaffoldingCodeGenerator>()
+                .AddSingleton<IDatabaseModelFactory, FbDatabaseModelFactory>()
+                .AddSingleton<IAnnotationCodeGenerator, FbAnnotationCodeGenerator>()
+                .AddSingleton<IRelationalTypeMapper, FbTypeMapper>();
+        }
+    }
 }
